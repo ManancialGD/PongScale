@@ -4,7 +4,7 @@ extends Node
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 
 	if player.velocity.x > 0.1:
 		animated_sprite_2d.flip_h = false

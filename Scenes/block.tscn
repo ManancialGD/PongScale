@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ksrjeteewwgg"]
+
+[ext_resource type="Texture2D" uid="uid://uohqpg7iaeod" path="res://Assets/Sprites/Environment/world_tileset.png" id="1_sgs4t"]
+[ext_resource type="Script" path="res://Scripts/breakable_block.gd" id="2_f2x6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhmtv"]
+size = Vector2(16, 16)
+
+[node name="Block" type="StaticBody2D"]
+script = ExtResource("2_f2x6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hhmtv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sgs4t")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)

@@ -4,7 +4,7 @@ extends Node
 
 @onready var cayote_time: Timer = $"../CayoteTime"
 
-const max_speed = 250.0
+const max_speed = 150.0
 const JUMP_VELOCITY = -300.0
 
 var has_cayote_time
@@ -61,8 +61,6 @@ func handle_jump(delta : float):
 	# Add the gravity.
 	if !player.is_on_floor():
 		player.velocity.y += gravity * delta
-	
-	print(gravity)
 
 func _on_cayote_time_timeout() -> void:
 	if !player.is_on_floor():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csmyvh43hpurc"
-path="res://.godot/imported/_DeathNoMovement.png-3b8de7f3cd0f9cf60dad08d9aa4c845b.ctex"
+uid="uid://uohqpg7iaeod"
+path="res://.godot/imported/world_tileset.png-69c3a5103060439fbb06434d7c6b69bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Knight/_DeathNoMovement.png"
-dest_files=["res://.godot/imported/_DeathNoMovement.png-3b8de7f3cd0f9cf60dad08d9aa4c845b.ctex"]
+source_file="res://Assets/Sprites/Environment/world_tileset.png"
+dest_files=["res://.godot/imported/world_tileset.png-69c3a5103060439fbb06434d7c6b69bb.ctex"]
 
 [params]
 

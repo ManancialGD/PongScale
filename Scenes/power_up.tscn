@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://3s7f4fjbxnnv"]
+
+[ext_resource type="Script" path="res://Scripts/power_up.gd" id="1_6pfbu"]
+[ext_resource type="Texture2D" uid="uid://riwp6p1pjrul" path="res://Assets/Sprites/sorpresa.png" id="1_yld1d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jnfwp"]
+radius = 8.06226
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sn3b"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgj7j"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjxwq"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hokf5"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8txys"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tkpp"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uye8s"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjpsm"]
+atlas = ExtResource("1_yld1d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o320h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sn3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgj7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjxwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hokf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8txys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tkpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uye8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjpsm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="PowerUp" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_6pfbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jnfwp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_o320h")
+autoplay = "default"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

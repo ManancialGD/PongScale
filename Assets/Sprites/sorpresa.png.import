@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjlid211u6ysl"
-path="res://.godot/imported/_Fall.png-6bab0181645dab2b458bf6b1e9654ffe.ctex"
+uid="uid://riwp6p1pjrul"
+path="res://.godot/imported/sorpresa.png-2711d3ad844217a2536ab95eb9be8e03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Knight/_Fall.png"
-dest_files=["res://.godot/imported/_Fall.png-6bab0181645dab2b458bf6b1e9654ffe.ctex"]
+source_file="res://Assets/Sprites/sorpresa.png"
+dest_files=["res://.godot/imported/sorpresa.png-2711d3ad844217a2536ab95eb9be8e03.ctex"]
 
 [params]
 
