@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var _directions=[-1,1]
-const speed=180
+const speed=5
 
 func _physics_process(delta: float) -> void:
 	for i in range(get_slide_collision_count()):
@@ -14,7 +14,14 @@ func _physics_process(delta: float) -> void:
 			_directions[1]=-1
 		elif collider.name == "ViewportLimitUp":
 			_directions[1]=1
-			
-	velocity.x=speed*_directions[0]
-	velocity.y=speed*_directions[1]
+		elif collider.name == "Player":
+			_directions[0]=1
+		elif collider.name == "Bot":
+			_directions[0]=-1
+	
+	position.x+=speed*_directions[0]
+	position.y+=speed*_directions[1]
 	move_and_slide()
+	#velocity.x=speed*_directions[0]
+	#velocity.y=speed*_directions[1]
+	#move_and_slide()

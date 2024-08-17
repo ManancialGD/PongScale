@@ -41,7 +41,7 @@ position = Vector2(-537, -8)
 [node name="Bot" parent="Camera2D" instance=ExtResource("2_ii0o4")]
 position = Vector2(544, 0)
 
-[node name="CharacterBody2D" parent="Camera2D" instance=ExtResource("3_6ox4d")]
+[node name="Ball" parent="Camera2D" instance=ExtResource("3_6ox4d")]
 
 [node name="ViewportLimitLeft" type="StaticBody2D" parent="."]
 
