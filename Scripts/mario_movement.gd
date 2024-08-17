@@ -7,6 +7,8 @@ extends Node
 const max_speed = 150.0
 const JUMP_VELOCITY = -300.0
 
+@onready var jump_sound: AudioStreamPlayer2D = $"../JumpSound"
+
 var has_cayote_time
 
 var is_cayote_time_on
@@ -24,10 +26,8 @@ func _physics_process(delta):
 	var direction = Input.get_axis("WalkLeft", "WalkRight")
 	
 	if direction != 0:
-		if player.is_on_floor():
 			player.velocity.x += direction * (max_speed * 3) * delta
 			if abs(player.velocity.x) >= max_speed: player.velocity.x = max_speed * direction
-		else:
 			player.velocity.x += direction * (max_speed * 5) * delta
 			if abs(player.velocity.x) >= max_speed: player.velocity.x = max_speed * direction
 	elif player.is_on_floor():
@@ -55,6 +55,8 @@ func handle_jump(delta : float):
 		player.velocity.y = JUMP_VELOCITY
 		has_cayote_time = false
 		jumped = true
+		jump_sound.pitch_scale = randf_range(0.8, 1.2)
+		jump_sound.play()
 	elif Input.is_action_just_released("Jump") and jumped:
 		gravity =  ProjectSettings.get_setting("physics/2d/default_gravity") * 1.5
 	

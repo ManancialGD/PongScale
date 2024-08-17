@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dtitcshw52iyk"]
+[gd_scene load_steps=30 format=3 uid="uid://dtitcshw52iyk"]
 
 [ext_resource type="Script" path="res://Scripts/mario_movement.gd" id="1_l3py8"]
 [ext_resource type="Script" path="res://Scripts/mario_animation.gd" id="2_8r812"]
 [ext_resource type="Texture2D" uid="uid://dblsypnnm4egv" path="res://Assets/Sprites/Knight/knight.png" id="2_icyld"]
 [ext_resource type="Script" path="res://Scripts/break_block.gd" id="4_tamab"]
+[ext_resource type="AudioStream" uid="uid://djdxsyax8k5os" path="res://Assets/Sounds/jump.wav" id="5_3007i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_47w57"]
 atlas = ExtResource("2_icyld")
@@ -182,8 +183,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mn1mp"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evl26"]
 radius = 6.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -209,10 +211,15 @@ one_shot = true
 script = ExtResource("1_l3py8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_mn1mp")
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_evl26")
 
 [node name="BreakBlock" type="Node" parent="."]
 script = ExtResource("4_tamab")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3007i")
+volume_db = -5.0
+bus = &"SoundEffects"
 
 [connection signal="timeout" from="CayoteTime" to="PlayerMovement" method="_on_cayote_time_timeout"]
