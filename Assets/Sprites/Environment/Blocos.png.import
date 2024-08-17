@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uohqpg7iaeod"
-path="res://.godot/imported/world_tileset.png-69c3a5103060439fbb06434d7c6b69bb.ctex"
+uid="uid://dpvwc4monirk4"
+path="res://.godot/imported/Blocos.png-5770442c787a1920ba12b5d20c72dfa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environment/world_tileset.png"
-dest_files=["res://.godot/imported/world_tileset.png-69c3a5103060439fbb06434d7c6b69bb.ctex"]
+source_file="res://Assets/Sprites/Environment/Blocos.png"
+dest_files=["res://.godot/imported/Blocos.png-5770442c787a1920ba12b5d20c72dfa0.ctex"]
 
 [params]
 
