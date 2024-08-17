@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://djdxsyax8k5os"
-path="res://.godot/imported/jump.wav-b5dabbc65af763f4e361f670f069e5de.sample"
+uid="uid://cbshlix3wm0sw"
+path="res://.godot/imported/bump.wav-c33f52dd45657f650c98b865cc2f197e.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/jump.wav"
-dest_files=["res://.godot/imported/jump.wav-b5dabbc65af763f4e361f670f069e5de.sample"]
+source_file="res://Assets/Sounds/Mario/bump.wav"
+dest_files=["res://.godot/imported/bump.wav-c33f52dd45657f650c98b865cc2f197e.sample"]
 
 [params]
 

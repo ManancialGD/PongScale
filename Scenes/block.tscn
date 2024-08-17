@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/breakable_block.gd" id="2_f2x6b"]
 [ext_resource type="Texture2D" uid="uid://dpvwc4monirk4" path="res://Assets/Sprites/Environment/Blocos.png" id="2_xo8jt"]
-[ext_resource type="AudioStream" uid="uid://hstdsqhq6lht" path="res://Assets/Sounds/hit.wav" id="3_1q64d"]
+[ext_resource type="AudioStream" uid="uid://hstdsqhq6lht" path="res://Assets/Sounds/Mario/hit.wav" id="3_1q64d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhmtv"]
 size = Vector2(16, 16)

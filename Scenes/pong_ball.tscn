@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://714j7shnwnqc"]
+[gd_scene load_steps=7 format=3 uid="uid://714j7shnwnqc"]
 
 [ext_resource type="Script" path="res://Scripts/pong_ball.gd" id="1_gumrb"]
+[ext_resource type="AudioStream" uid="uid://dojovqnmp3p40" path="res://Assets/Sounds/Pong/wall.wav" id="2_0qvp0"]
+[ext_resource type="AudioStream" uid="uid://cbmg1o1frogvl" path="res://Assets/Sounds/Pong/point.wav" id="2_8g3nr"]
+[ext_resource type="AudioStream" uid="uid://b75x36u4oep7g" path="res://Assets/Sounds/Pong/Paddle.wav" id="3_3x3r0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvre6"]
 size = Vector2(17, 83)
@@ -17,3 +20,15 @@ shape = SubResource("RectangleShape2D_xvre6")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 scale = Vector2(17.12, 83.72)
 texture = SubResource("CanvasTexture_n0060")
+
+[node name="PointSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_8g3nr")
+bus = &"SoundEffects"
+
+[node name="WallSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_0qvp0")
+bus = &"SoundEffects"
+
+[node name="PaddleSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3x3r0")
+bus = &"SoundEffects"

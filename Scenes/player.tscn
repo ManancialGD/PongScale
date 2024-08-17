@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://uo0fk2ja1hmg" path="res://Assets/Sprites/Knight/bonequinhoMario.png" id="2_7uxgw"]
 [ext_resource type="Script" path="res://Scripts/mario_animation.gd" id="2_8r812"]
 [ext_resource type="Script" path="res://Scripts/break_block.gd" id="4_tamab"]
-[ext_resource type="AudioStream" uid="uid://djdxsyax8k5os" path="res://Assets/Sounds/jump.wav" id="5_3007i"]
+[ext_resource type="AudioStream" uid="uid://djdxsyax8k5os" path="res://Assets/Sounds/Mario/jump.wav" id="5_3007i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7y483"]
 atlas = ExtResource("2_7uxgw")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://csvra4hnxrpbt"]
 
-[ext_resource type="Script" path="res://Scenes/camera_pivot.gd" id="1_iwk24"]
+[ext_resource type="Script" path="res://Scripts/camera_pivot.gd" id="1_iwk24"]
 [ext_resource type="PackedScene" uid="uid://dtitcshw52iyk" path="res://Scenes/player.tscn" id="1_o6nvt"]
 [ext_resource type="PackedScene" uid="uid://ksrjeteewwgg" path="res://Scenes/block.tscn" id="3_pk00h"]
 [ext_resource type="Texture2D" uid="uid://dpvwc4monirk4" path="res://Assets/Sprites/Environment/Blocos.png" id="4_awvyb"]
