@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://1k8rq1y0l6e"]
+
+[ext_resource type="PackedScene" uid="uid://b01jvrmfswub4" path="res://Scenes/player_pong.tscn" id="1_r5oe5"]
+[ext_resource type="PackedScene" uid="uid://bcnyciepu2ri2" path="res://Scenes/bot_pong.tscn" id="2_ii0o4"]
+[ext_resource type="PackedScene" uid="uid://714j7shnwnqc" path="res://Scenes/pong_ball.tscn" id="3_6ox4d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n2r3s"]
+blend_mode = 3
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2rfmp"]
+a = Vector2(0, -21)
+b = Vector2(0, 668)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fn0ua"]
+a = Vector2(-141, -93)
+b = Vector2(1019, -94)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_erax8"]
+a = Vector2(868, 494)
+b = Vector2(-304, 495)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bdqdi"]
+a = Vector2(1, -12)
+b = Vector2(-2, 673)
+
+[node name="Root" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 323)
+
+[node name="Panel" type="Panel" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_n2r3s")
+offset_left = -586.0
+offset_top = -335.0
+offset_right = 586.0
+offset_bottom = 334.0
+
+[node name="Player" parent="Camera2D" instance=ExtResource("1_r5oe5")]
+position = Vector2(-537, -8)
+
+[node name="Bot" parent="Camera2D" instance=ExtResource("2_ii0o4")]
+position = Vector2(544, 0)
+
+[node name="CharacterBody2D" parent="Camera2D" instance=ExtResource("3_6ox4d")]
+
+[node name="ViewportLimitLeft" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportLimitLeft"]
+shape = SubResource("SegmentShape2D_2rfmp")
+
+[node name="ViewportLimitUp" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ViewportLimitUp"]
+position = Vector2(137, 94)
+shape = SubResource("SegmentShape2D_fn0ua")
+
+[node name="ViewportLimitDown" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ViewportLimitDown"]
+position = Vector2(303, 154)
+shape = SubResource("SegmentShape2D_erax8")
+
+[node name="ViewportLimitRight" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ViewportLimitRight"]
+position = Vector2(1154, 4)
+shape = SubResource("SegmentShape2D_bdqdi")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcnyciepu2ri2"]
+
+[ext_resource type="Script" path="res://Scripts/bot_pong.gd" id="1_87y3b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kr6y7"]
+size = Vector2(17, 83)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w7l8t"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_87y3b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kr6y7")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(17.12, 83.72)
+texture = SubResource("CanvasTexture_w7l8t")
