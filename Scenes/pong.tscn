@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://1k8rq1y0l6e"]
+[gd_scene load_steps=12 format=3 uid="uid://1k8rq1y0l6e"]
 
 [ext_resource type="PackedScene" uid="uid://b01jvrmfswub4" path="res://Scenes/player_pong.tscn" id="1_r5oe5"]
 [ext_resource type="PackedScene" uid="uid://bcnyciepu2ri2" path="res://Scenes/bot_pong.tscn" id="2_ii0o4"]
 [ext_resource type="PackedScene" uid="uid://714j7shnwnqc" path="res://Scenes/pong_ball.tscn" id="3_6ox4d"]
 [ext_resource type="Script" path="res://Scripts/pong_score.gd" id="4_htejd"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="5_iy404"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n2r3s"]
 blend_mode = 3
@@ -39,13 +40,17 @@ offset_top = -335.0
 offset_right = 586.0
 offset_bottom = 334.0
 
-[node name="Player" parent="Camera2D" instance=ExtResource("1_r5oe5")]
-position = Vector2(-537, -8)
-
 [node name="Bot" parent="Camera2D" instance=ExtResource("2_ii0o4")]
 position = Vector2(544, 0)
 
 [node name="Ball" parent="Camera2D" instance=ExtResource("3_6ox4d")]
+
+[node name="Collision" type="Timer" parent="Camera2D/Ball"]
+wait_time = 0.4
+one_shot = true
+
+[node name="Player" parent="Camera2D" instance=ExtResource("1_r5oe5")]
+position = Vector2(-537, -8)
 
 [node name="Scoreboard" type="Label" parent="Camera2D"]
 offset_left = -81.0
@@ -79,3 +84,11 @@ shape = SubResource("SegmentShape2D_erax8")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="ViewportLimitRight"]
 position = Vector2(1154, 4)
 shape = SubResource("SegmentShape2D_bdqdi")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("5_iy404")
+
+[connection signal="timeout" from="Camera2D/Ball/Collision" to="Camera2D/Ball" method="_on_collision_timeout"]
+[connection signal="pongPauseGame" from="GameManager" to="Camera2D/Bot" method="_on_game_manager_pong_pause_game"]
+[connection signal="pongPauseGame" from="GameManager" to="Camera2D/Ball" method="_on_game_manager_pong_pause_game"]
+[connection signal="pongPauseGame" from="GameManager" to="Camera2D/Player" method="_on_game_manager_pong_pause_game"]
