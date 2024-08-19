@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy2eiyo1nidaj"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_7pm54"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u6iae"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jhvnu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbssl"]
+size = Vector2(16.0023, 32)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pa5pf"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7pm54")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 479.0
+offset_right = 1111.0
+offset_bottom = 603.0
+
+[node name="StartBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="AboutBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "About"
+
+[node name="ExitBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+text = "Exit"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(192, 257)
+mass = 0.518
+physics_material_override = SubResource("PhysicsMaterial_u6iae")
+constant_force = Vector2(20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(33.513, 31.6242)
+texture = SubResource("CanvasTexture_jhvnu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+rotation = -3.14159
+scale = Vector2(2.12469, -1)
+shape = SubResource("RectangleShape2D_bbssl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(550, 648)
+shape = SubResource("WorldBoundaryShape2D_pa5pf")
+
+[connection signal="button_down" from="VBoxContainer/StartBtn" to="." method="_on_start_btn_button_down"]
+[connection signal="button_down" from="VBoxContainer/ExitBtn" to="." method="_on_exit_btn_button_down"]
