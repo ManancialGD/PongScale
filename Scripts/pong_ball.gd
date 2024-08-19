@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var _directions=[-1,1]
+var _directions=[-1,-1]
 var pause=false
 @onready var Scoreboard = $"../Scoreboard"
 @onready var wall_sound: AudioStreamPlayer2D = $WallSound
@@ -13,6 +13,10 @@ var playerColCount=0
 func scaleUp():
 	scale.x+=0.3
 	scale.y+=0.3
+
+func _ready() -> void:
+	position.y+=[-1, 1].pick_random()*randi_range(0, 50)
+	position.x+=[-1, 1].pick_random()*randi_range(0, 50)
 
 func _physics_process(_delta: float) -> void:
 	if pause: return
