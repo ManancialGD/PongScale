@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Mario
 
 signal got_damaged()
+
 @onready var stunned_time: Timer = $StunnedTime
 
 func Damage(knockback: Vector2) -> void:

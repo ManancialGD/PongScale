@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlpcx627omgjr"]
+[gd_scene load_steps=10 format=3 uid="uid://dlpcx627omgjr"]
 
 [ext_resource type="Script" path="res://Scripts/henrico.gd" id="1_ejeg1"]
 [ext_resource type="Texture2D" uid="uid://d2t3fy564gwnn" path="res://Assets/Sprites/enenmy.png" id="1_kj0cn"]
@@ -6,17 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6raok"]
 size = Vector2(16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pyach"]
-atlas = ExtResource("1_kj0cn")
-region = Rect2(0, 32, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ue1mk"]
 atlas = ExtResource("1_kj0cn")
 region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hiefj"]
-atlas = ExtResource("1_kj0cn")
-region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_87t3p"]
 atlas = ExtResource("1_kj0cn")
@@ -34,17 +26,11 @@ region = Rect2(64, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pyach")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ue1mk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hiefj")
 }],
 "loop": false,
 "name": &"Die",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -79,7 +65,7 @@ script = ExtResource("1_ejeg1")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -8)
-collision_layer = 3
+collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -88,8 +74,9 @@ shape = SubResource("RectangleShape2D_6raok")
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mcgva")
-animation = &"PlatformDie"
+animation = &"Die"
 autoplay = "Walk"
+frame_progress = 1.0
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
 position = Vector2(12, -16)
@@ -103,7 +90,7 @@ target_position = Vector2(0, 22)
 collision_mask = 259
 collide_with_areas = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_sqf0k")
 

@@ -17,15 +17,26 @@ var jumped = false
 
 var damaged = false
 
+var initial_movement_block = true
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 
+
+	
 	handle_jump(delta)
 	if damaged:
 		player.move_and_slide()
 		return
+		
+	if player.is_on_floor() and initial_movement_block:
+		initial_movement_block = false
+	if initial_movement_block:
+		player.move_and_slide()
+		return
+		
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("WalkLeft", "WalkRight")
 	

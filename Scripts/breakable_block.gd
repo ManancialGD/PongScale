@@ -15,8 +15,6 @@ func Destroy():
 	for body in bodies:
 		if body is Henrico:
 			var character = body as Henrico
-			character.velocity.y = -150
-			character.move_and_slide()
 			character.PlatformDamage()
 
 	particles_timer.start()

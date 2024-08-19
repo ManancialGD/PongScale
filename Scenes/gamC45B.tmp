@@ -35,7 +35,7 @@ distance = -2.0
 metadata/_edit_horizontal_guides_ = [-93.0]
 
 [node name="CameraPivot" type="Node2D" parent="."]
-position = Vector2(-104, -350)
+position = Vector2(-28, -156)
 script = ExtResource("1_iwk24")
 
 [node name="Camera2D" type="Camera2D" parent="CameraPivot"]
@@ -47,7 +47,7 @@ drag_right_margin = 0.1
 
 [node name="MarioPlayer" parent="." instance=ExtResource("1_o6nvt")]
 unique_name_in_owner = true
-position = Vector2(-104, -345)
+position = Vector2(-28, -151)
 collision_mask = 3
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
