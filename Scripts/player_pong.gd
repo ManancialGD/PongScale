@@ -5,9 +5,7 @@ var pause=false
 var transitionSpeed=0
 var transitionAcc=0.07
 
-@onready var transition_sound: AudioStreamPlayer2D = $TransitionSound
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if pause: 
 		transitionSpeed+=transitionAcc
 		position.x-=transitionSpeed
@@ -27,6 +25,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_game_manager_pong_pause_game() -> void:
-	transition_sound.play()
 	$CollisionShape2D.disabled=true
 	pause=true

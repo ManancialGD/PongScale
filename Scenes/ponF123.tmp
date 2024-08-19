@@ -81,7 +81,6 @@ script = ExtResource("5_iy404")
 [node name="TransitionSound" type="AudioStreamPlayer2D" parent="GameManager"]
 position = Vector2(577, 324)
 stream = ExtResource("6_0ihl1")
-volume_db = 8.0
 bus = &"SoundEffects"
 
 [connection signal="pongPauseGame" from="GameManager" to="Camera2D/Bot" method="_on_game_manager_pong_pause_game"]

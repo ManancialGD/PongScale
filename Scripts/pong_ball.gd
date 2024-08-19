@@ -14,7 +14,7 @@ func scaleUp():
 	scale.x+=0.3
 	scale.y+=0.3
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if pause: return
 	if $"..".zoom.x > 1 && $"..".zoom.y > 1:
 		$"..".zoom.x-=0.005
