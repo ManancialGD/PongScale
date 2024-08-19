@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://oa78ttqi306q"]
+
+[ext_resource type="Script" path="res://Scenes/rpg_enemy.gd" id="1_idg55"]
+[ext_resource type="Texture2D" uid="uid://be6vqcs2alanu" path="res://Assets/Sprites/RPG/momo_idle_shadow.png" id="1_yiq0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab0nh"]
+size = Vector2(16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q61r4"]
+atlas = ExtResource("1_yiq0f")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dp2s"]
+atlas = ExtResource("1_yiq0f")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x0ok"]
+atlas = ExtResource("1_yiq0f")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn30g"]
+atlas = ExtResource("1_yiq0f")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8twkb"]
+atlas = ExtResource("1_yiq0f")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa4dd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q61r4")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dp2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x0ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn30g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8twkb")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar1t1"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8sjm"]
+size = Vector2(16, 20)
+
+[node name="RPG_Enemy" type="CharacterBody2D"]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_idg55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_ab0nh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_pa4dd")
+animation = &"Die"
+autoplay = "Walk"
+frame_progress = 0.360955
+
+[node name="DeleteTimer" type="Timer" parent="."]
+
+[node name="StunTime" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(0, -3)
+monitoring = false
+
+[node name="Panel" type="Panel" parent="AttackArea"]
+offset_left = 10.0
+offset_top = -10.0
+offset_right = 26.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ar1t1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_v8sjm")
+
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]
+[connection signal="timeout" from="StunTime" to="." method="_on_stun_time_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

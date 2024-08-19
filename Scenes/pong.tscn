@@ -52,6 +52,12 @@ label_settings = SubResource("LabelSettings_stejs")
 horizontal_alignment = 1
 script = ExtResource("4_htejd")
 
+[node name="TransitionSound" type="AudioStreamPlayer2D" parent="Camera2D"]
+position = Vector2(0, 1)
+stream = ExtResource("6_0ihl1")
+volume_db = 8.0
+bus = &"SoundEffects"
+
 [node name="ViewportLimitLeft" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportLimitLeft"]
@@ -77,12 +83,6 @@ shape = SubResource("SegmentShape2D_bdqdi")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("5_iy404")
-
-[node name="TransitionSound" type="AudioStreamPlayer2D" parent="GameManager"]
-position = Vector2(577, 324)
-stream = ExtResource("6_0ihl1")
-volume_db = 8.0
-bus = &"SoundEffects"
 
 [connection signal="pongPauseGame" from="GameManager" to="Camera2D/Bot" method="_on_game_manager_pong_pause_game"]
 [connection signal="pongPauseGame" from="GameManager" to="Camera2D/Ball" method="_on_game_manager_pong_pause_game"]

@@ -31,30 +31,30 @@ func _physics_process(_delta: float) -> void:
 		if collider.name == "ViewportLimitRight":
 			Scoreboard.playerScore+=1
 			point_sound.play()
-			_directions[0]=-1
+			_directions[0] = -1
 		elif collider.name == "ViewportLimitLeft":
-			Scoreboard.botScore+=1
+			Scoreboard.botScore += 1
 			point_sound.play()
-			_directions[0]=1
+			_directions[0] = 1
 		elif collider.name == "ViewportLimitDown":
-			_directions[1]=-1
+			_directions[1] =- 1
 			wall_sound.play()
 		elif collider.name == "ViewportLimitUp":
-			_directions[1]=1
+			_directions[1] = 1
 			wall_sound.play()
 		elif collider.name == "Player":
-			_directions[0]=1
-			playerColCount+=1
+			_directions[0] = 1
+			playerColCount += 1
 			paddle_sound.play()
 			scaleUp()
-			$"..".zoom.x=1.04
-			$"..".zoom.y=1.04
+			$"..".zoom.x = 1.04
+			$"..".zoom.y = 1.04
 		elif collider.name == "Bot":
-			_directions[0]=-1
+			_directions[0] = -1
 			paddle_sound.play()
 			scaleUp()
-			$"..".zoom.x=1.04
-			$"..".zoom.y=1.04
+			$"..".zoom.x = 1.04
+			$"..".zoom.y = 1.04
 	
 	if _directions[1] == 0 && _directions[0] != 0: _directions[1] = [-1,-1].pick_random()
 	

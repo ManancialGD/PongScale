@@ -14,6 +14,7 @@ var normalDeath = false
 
 @onready var right_ray_cast: RayCast2D = $RightRayCast
 @onready var left_ray_cast: RayCast2D = $LeftRayCast
+@onready var crushed_sound: AudioStreamPlayer2D = $CrushedSound
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var move_after: Timer = $MoveAfter
@@ -56,8 +57,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if dead: return
-	if body is Mario:
-		var player = body as Mario
+	if body is Mauro:
+		var player = body as Mauro
 		if player.velocity.y > 0:
 			Damage()
 			player.velocity.y = -250
@@ -71,12 +72,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			player.Damage(Vector2(knockbackDir, -1).normalized() * 250)
 			
 			player.move_and_slide()
+			
 
 func Damage() -> void:
 	if dead: return
 	dead = true
 	normalDeath = true
 	animated_sprite.play("Die")
+	crushed_sound.play()
 	velocity.y = -125
 	
 	move_and_slide()
@@ -100,7 +103,7 @@ func PlatformDamage() -> void:
 	physics_collider.disabled = true
 	
 	z_index = 25
-	
+	crushed_sound.play()
 	
 func _on_move_after_timeout() -> void:
 	canMove = true

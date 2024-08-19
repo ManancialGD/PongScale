@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name Mario
+class_name Mauro
 
 signal got_damaged()
 

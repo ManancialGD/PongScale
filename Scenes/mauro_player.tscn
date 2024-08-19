@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://dtitcshw52iyk"]
 
-[ext_resource type="Script" path="res://Scripts/mario_movement.gd" id="1_l3py8"]
+[ext_resource type="Script" path="res://Scripts/mauro_movement.gd" id="1_l3py8"]
 [ext_resource type="Script" path="res://Scripts/mario.gd" id="1_x57bn"]
 [ext_resource type="Texture2D" uid="uid://uo0fk2ja1hmg" path="res://Assets/Sprites/Knight/bonequinhoMario.png" id="2_7uxgw"]
-[ext_resource type="Script" path="res://Scripts/mario_animation.gd" id="2_8r812"]
+[ext_resource type="Script" path="res://Scripts/mauro_animation.gd" id="2_8r812"]
 [ext_resource type="Script" path="res://Scripts/break_block.gd" id="4_tamab"]
 [ext_resource type="AudioStream" uid="uid://djdxsyax8k5os" path="res://Assets/Sounds/Mario/jump.wav" id="5_3007i"]
 
@@ -88,7 +88,7 @@ animations = [{
 radius = 4.0
 height = 12.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="MauroPlayer" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 3
 collision_mask = 2
