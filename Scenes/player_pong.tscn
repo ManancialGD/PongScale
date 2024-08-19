@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b01jvrmfswub4"]
+[gd_scene load_steps=5 format=3 uid="uid://b01jvrmfswub4"]
 
 [ext_resource type="Script" path="res://Scripts/player_pong.gd" id="1_pe2ka"]
+[ext_resource type="AudioStream" uid="uid://dqrrp1enqs361" path="res://Assets/Sounds/Pong/transition.wav" id="2_ssvoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccyq4"]
 size = Vector2(17, 83)
@@ -18,3 +19,9 @@ shape = SubResource("RectangleShape2D_ccyq4")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 scale = Vector2(17.12, 83.72)
 texture = SubResource("CanvasTexture_bh6rl")
+
+[node name="TransitionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ssvoq")
+volume_db = 20.0
+attenuation = 0.61557
+bus = &"SoundEffects"

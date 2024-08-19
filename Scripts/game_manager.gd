@@ -1,6 +1,6 @@
 extends Node
 
-const howManyToPausePong=3
+const howManyToPausePong=2
 @onready var Ball: CharacterBody2D = $"../Camera2D/Ball"
 var pongPaused=false
 signal pongPauseGame
