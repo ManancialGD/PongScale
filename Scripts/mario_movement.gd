@@ -15,13 +15,17 @@ var is_cayote_time_on
 
 var jumped = false
 
+var damaged = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 
 	handle_jump(delta)
-	
+	if damaged:
+		player.move_and_slide()
+		return
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("WalkLeft", "WalkRight")
 	
@@ -39,7 +43,7 @@ func _physics_process(delta):
 
 func handle_jump(delta : float):
 	if player.is_on_floor():
-		player.velocity.y = 0
+		if !damaged: player.velocity.y = 0
 		has_cayote_time = true
 	
 	if has_cayote_time and !player.is_on_floor() and !is_cayote_time_on:
@@ -68,3 +72,12 @@ func _on_cayote_time_timeout() -> void:
 	if !player.is_on_floor():
 		has_cayote_time = false
 	is_cayote_time_on = false
+
+
+func _on_player_got_damaged() -> void:
+	damaged = true
+	print("Damaged")
+
+
+func _on_stunned_time_timeout() -> void:
+	damaged = false

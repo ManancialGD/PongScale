@@ -7,6 +7,7 @@ class_name LuckBlock
 
 @onready var jump_animation: AnimationPlayer = $JumpAnimation
 @onready var bump: AudioStreamPlayer2D = $Bump
+@onready var area_2d: Area2D = $Area2D
 
 var instance
 
@@ -21,12 +22,18 @@ func _ready():
 
 
 func Interact():
-	if has_been_interacted:
-		jump_animation.play("Hit")
-		bump.play()
-		return
+	if has_been_interacted: return
 	has_been_interacted = true
 	
+	
+	var bodies = area_2d.get_overlapping_bodies()
+	for body in bodies:
+		if body is Henrico:
+			var character = body as Henrico
+			character.velocity.y = -150
+			character.move_and_slide()
+			character.PlatformDamage()
+			
 	instance.position = Vector2(position.x, position.y - 16)
 	get_tree().root.add_child(instance)
 

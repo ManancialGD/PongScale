@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/bump.wav-c33f52dd45657f650c98b865cc2f197e.sam
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

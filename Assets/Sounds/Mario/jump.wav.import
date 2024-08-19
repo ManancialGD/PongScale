@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/jump.wav-db462bae348f443a72136fbdc407534a.sam
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

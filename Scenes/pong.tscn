@@ -42,15 +42,13 @@ offset_bottom = 334.0
 
 [node name="Bot" parent="Camera2D" instance=ExtResource("2_ii0o4")]
 position = Vector2(544, 0)
+collision_mask = 3
 
 [node name="Ball" parent="Camera2D" instance=ExtResource("3_6ox4d")]
 
-[node name="Collision" type="Timer" parent="Camera2D/Ball"]
-wait_time = 0.4
-one_shot = true
-
 [node name="Player" parent="Camera2D" instance=ExtResource("1_r5oe5")]
 position = Vector2(-537, -8)
+collision_mask = 3
 
 [node name="Scoreboard" type="Label" parent="Camera2D"]
 offset_left = -81.0
@@ -88,7 +86,6 @@ shape = SubResource("SegmentShape2D_bdqdi")
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("5_iy404")
 
-[connection signal="timeout" from="Camera2D/Ball/Collision" to="Camera2D/Ball" method="_on_collision_timeout"]
 [connection signal="pongPauseGame" from="GameManager" to="Camera2D/Bot" method="_on_game_manager_pong_pause_game"]
 [connection signal="pongPauseGame" from="GameManager" to="Camera2D/Ball" method="_on_game_manager_pong_pause_game"]
 [connection signal="pongPauseGame" from="GameManager" to="Camera2D/Player" method="_on_game_manager_pong_pause_game"]
