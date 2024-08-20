@@ -23,9 +23,7 @@ var initial_movement_block = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-
-
-	
+	if player.is_dead: return
 	handle_jump(delta)
 	if damaged:
 		player.move_and_slide()

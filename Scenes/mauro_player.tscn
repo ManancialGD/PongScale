@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dtitcshw52iyk"]
 
 [ext_resource type="Script" path="res://Scripts/mauro_movement.gd" id="1_l3py8"]
-[ext_resource type="Script" path="res://Scripts/mario.gd" id="1_x57bn"]
+[ext_resource type="Script" path="res://Scripts/mauro.gd" id="1_x57bn"]
 [ext_resource type="Texture2D" uid="uid://uo0fk2ja1hmg" path="res://Assets/Sprites/Knight/bonequinhoMario.png" id="2_7uxgw"]
 [ext_resource type="Script" path="res://Scripts/mauro_animation.gd" id="2_8r812"]
 [ext_resource type="Script" path="res://Scripts/break_block.gd" id="4_tamab"]
@@ -130,7 +130,12 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="RestartAfterTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="got_damaged" from="." to="PlayerMovement" method="_on_player_got_damaged"]
 [connection signal="timeout" from="CayoteTime" to="PlayerMovement" method="_on_cayote_time_timeout"]
 [connection signal="timeout" from="LandAnimationTimer" to="PlayerAnimation" method="_on_land_animation_timer_timeout"]
 [connection signal="timeout" from="StunnedTime" to="PlayerMovement" method="_on_stunned_time_timeout"]
+[connection signal="timeout" from="RestartAfterTimer" to="." method="_on_restart_after_timer_timeout"]

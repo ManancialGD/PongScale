@@ -1,7 +1,11 @@
-[gd_scene load_steps=49 format=3 uid="uid://i8arl7nwgjwb"]
+[gd_scene load_steps=64 format=3 uid="uid://i8arl7nwgjwb"]
 
 [ext_resource type="Script" path="res://Scripts/rpg_player.gd" id="1_0ljyf"]
-[ext_resource type="Texture2D" uid="uid://rch60jrhi8ax" path="res://Assets/Sprites/RPG/RPG_PlayerSpriteSheet.png" id="3_t0vy0"]
+[ext_resource type="AudioStream" uid="uid://kf6l3uhol5hl" path="res://Assets/Sounds/RPG/SwooshSound.wav" id="2_1typ8"]
+[ext_resource type="AudioStream" uid="uid://dlt3fkmqka5nd" path="res://Assets/Sounds/RPG/WooshDash.wav" id="2_7oic1"]
+[ext_resource type="Texture2D" uid="uid://dfa62e7324qu6" path="res://Assets/Sprites/RPG/RPG_PlayerDamaged.png" id="2_brtx1"]
+[ext_resource type="Texture2D" uid="uid://cgrdasfxlvjhd" path="res://Assets/Sprites/RPG/RPG_PlayerRoll.png" id="3_1rpwv"]
+[ext_resource type="Texture2D" uid="uid://b3potd5e5opq4" path="res://Assets/Sprites/RPG/RPG_PlayerDead.png" id="3_dqpl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0fh3"]
 size = Vector2(32, 42)
@@ -89,9 +93,17 @@ region = Rect2(80, 320, 80, 64)
 atlas = SubResource("CompressedTexture2D_eye1q")
 region = Rect2(160, 320, 80, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nalyk"]
-atlas = ExtResource("3_t0vy0")
-region = Rect2(160, 320, 80, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6a1v"]
+atlas = ExtResource("2_brtx1")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p828c"]
+atlas = ExtResource("2_brtx1")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0t67"]
+atlas = ExtResource("2_brtx1")
+region = Rect2(160, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nemid"]
 atlas = SubResource("CompressedTexture2D_eye1q")
@@ -136,6 +148,42 @@ region = Rect2(320, 64, 80, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lk5le"]
 atlas = SubResource("CompressedTexture2D_eye1q")
 region = Rect2(400, 64, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcavu"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rei2e"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q86ia"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw6dl"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngxva"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hexc3"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d26m"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jadb5"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(560, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wahqd"]
+atlas = ExtResource("3_1rpwv")
+region = Rect2(640, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qcpx"]
 atlas = SubResource("CompressedTexture2D_eye1q")
@@ -239,7 +287,21 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nalyk")
+"texture": SubResource("AtlasTexture_t6a1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p828c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0t67")
+}],
+"loop": false,
+"name": &"Damaged",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dqpl6")
 }],
 "loop": true,
 "name": &"Die",
@@ -287,6 +349,38 @@ animations = [{
 "loop": true,
 "name": &"IdleUp",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcavu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rei2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q86ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw6dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngxva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hexc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d26m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jadb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wahqd")
+}],
+"loop": false,
+"name": &"Roll",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -350,21 +444,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mi66"]
 size = Vector2(24, 11)
 
-[sub_resource type="Animation" id="Animation_cbq4w"]
-resource_name = "Start"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 1),
-"transitions": PackedFloat32Array(2.07053, 0.112656),
-"update": 0,
-"values": [Vector2(-3, -300), Vector2(-3, -16)]
-}
-
 [sub_resource type="Animation" id="Animation_a5p2r"]
 length = 0.001
 tracks/0/type = "value"
@@ -378,6 +457,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-3, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_cbq4w"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(2.07053, 0.112656),
+"update": 0,
+"values": [Vector2(-3, -300), Vector2(-3, -16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xlsxf"]
@@ -408,13 +502,29 @@ autoplay = "PREVENT SHIT UP"
 frame = 7
 frame_progress = 1.0
 
+[node name="AttackAudio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3, -16)
+stream = ExtResource("2_1typ8")
+bus = &"SoundEffects"
+
+[node name="DashAudio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3, -16)
+stream = ExtResource("2_7oic1")
+volume_db = -0.2
+bus = &"SoundEffects"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5
 position = Vector2(-3, -16)
 sprite_frames = SubResource("SpriteFrames_4l664")
-animation = &"Die"
-autoplay = "IdleDown"
-frame_progress = 0.546158
+animation = &"Roll"
+autoplay = "Roll"
+frame = 8
+frame_progress = 1.0
+
+[node name="RollCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.7
@@ -445,9 +555,20 @@ autoplay = "Start"
 one_shot = true
 autostart = true
 
+[node name="RestartAfterTime" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="RollCooldown" to="." method="_on_roll_cooldown_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="AttackAfterTime" to="." method="_on_attack_after_time_timeout"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="StartFallTimer" to="." method="_on_start_fall_timer_timeout"]
+[connection signal="timeout" from="RestartAfterTime" to="." method="_on_restart_after_time_timeout"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

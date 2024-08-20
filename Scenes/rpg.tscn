@@ -1,13 +1,18 @@
-[gd_scene load_steps=16 format=4 uid="uid://drklu50pvxydd"]
+[gd_scene load_steps=21 format=4 uid="uid://drklu50pvxydd"]
 
 [ext_resource type="Script" path="res://Scripts/camera_pivot.gd" id="1_vc7ut"]
 [ext_resource type="PackedScene" uid="uid://i8arl7nwgjwb" path="res://Scenes/rpg_player.tscn" id="1_yrmbn"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="3_7eoae"]
 [ext_resource type="Texture2D" uid="uid://bp4eiqxva87ag" path="res://Assets/Sprites/RPG/mainlevbuild.png" id="3_b40vn"]
+[ext_resource type="Script" path="res://Scripts/music_controller.gd" id="4_4vue4"]
 [ext_resource type="PackedScene" uid="uid://oa78ttqi306q" path="res://Scenes/rpg_enemy.tscn" id="4_sel6w"]
 [ext_resource type="PackedScene" uid="uid://bqgsmqrmf62un" path="res://Scenes/slime_boss.tscn" id="5_32ima"]
+[ext_resource type="AudioStream" uid="uid://cw3y3okegxw6a" path="res://Assets/Music/BossMusicFase1Intro.wav" id="5_o2vil"]
 [ext_resource type="Script" path="res://Scripts/block_path.gd" id="6_ogqfc"]
-[ext_resource type="Script" path="res://Scenes/boss_room_entrance.gd" id="6_wp3eu"]
+[ext_resource type="AudioStream" uid="uid://bqnm8kqta51ir" path="res://Assets/Music/BossMusicFase1.wav" id="6_wmwln"]
+[ext_resource type="Script" path="res://Scripts/boss_room_entrance.gd" id="6_wp3eu"]
+[ext_resource type="AudioStream" uid="uid://lkyijmqcpbw6" path="res://Assets/Music/BossMusicFase2Intro.wav" id="7_vos43"]
+[ext_resource type="AudioStream" uid="uid://djoch3qsoi6oa" path="res://Assets/Music/BossMusicFase2.wav" id="8_5qlgw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd5dy"]
 texture = ExtResource("3_b40vn")
@@ -1114,6 +1119,27 @@ script = ExtResource("3_7eoae")
 wait_time = 0.2
 one_shot = true
 
+[node name="MusicController" type="Node2D" parent="CameraPivot"]
+position = Vector2(0, -180)
+script = ExtResource("4_4vue4")
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="CameraPivot/MusicController"]
+stream = ExtResource("5_o2vil")
+autoplay = true
+bus = &"Music"
+
+[node name="1" type="AudioStreamPlayer2D" parent="CameraPivot/MusicController"]
+stream = ExtResource("6_wmwln")
+bus = &"Music"
+
+[node name="Transition" type="AudioStreamPlayer2D" parent="CameraPivot/MusicController"]
+stream = ExtResource("7_vos43")
+bus = &"Music"
+
+[node name="Main" type="AudioStreamPlayer2D" parent="CameraPivot/MusicController"]
+stream = ExtResource("8_5qlgw")
+bus = &"Music"
+
 [node name="RPGPlayer" parent="." instance=ExtResource("1_yrmbn")]
 unique_name_in_owner = true
 z_index = 5
@@ -1130,11 +1156,18 @@ camera = NodePath("../CameraPivot/Camera2D")
 target = NodePath("../RPGPlayer")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 136.0
+offset_left = 126.0
 offset_top = 85.0
-offset_right = 342.0
+offset_right = 332.0
 offset_bottom = 110.0
 text = "Mouse click 1 to attack!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -226.0
+offset_top = -229.0
+offset_right = -120.0
+offset_bottom = -204.0
+text = "Space to roll!"
 
 [node name="BlockPath" type="StaticBody2D" parent="."]
 position = Vector2(0, -407)
@@ -1157,8 +1190,11 @@ wait_time = 4.0
 one_shot = true
 
 [connection signal="timeout" from="CameraPivot/ShakerTimer" to="CameraPivot/Camera2D" method="_on_shaker_timer_timeout"]
+[connection signal="finished" from="CameraPivot/MusicController/Intro" to="CameraPivot/MusicController" method="_on_intro_finished"]
+[connection signal="finished" from="CameraPivot/MusicController/Transition" to="CameraPivot/MusicController" method="_on_transition_finished"]
 [connection signal="body_entered" from="BossRoomEntrance" to="BossRoomEntrance" method="_on_body_entered"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="CameraPivot/Camera2D" method="_on_boss_room_entrance_player_entered_room"]
+[connection signal="player_entered_room" from="BossRoomEntrance" to="CameraPivot/MusicController" method="_on_boss_room_entrance_player_entered_room"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="RPGPlayer" method="_on_boss_room_entrance_player_entered_room"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="SlimeBoss" method="_on_boss_room_entrance_player_entered_room"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="BlockPath" method="_on_boss_room_entrance_player_entered_room"]

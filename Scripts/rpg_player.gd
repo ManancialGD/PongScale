@@ -11,10 +11,19 @@ class_name RPG_Player
 @onready var attack_cooldown_timer: Timer = $AttackCooldown
 @onready var attack_after_time: Timer = $AttackAfterTime
 @onready var stun_timer: Timer = $StunTimer
+@onready var restart_after_time: Timer = $RestartAfterTime
+@onready var invulnerability_timer: Timer = $InvulnerabilityTimer
+@onready var roll_cooldown: Timer = $RollCooldown
+@onready var dash_audio: AudioStreamPlayer2D = $DashAudio
+@onready var attack_audio: AudioStreamPlayer2D = $AttackAudio
+
+var on_roll_cooldown = false
 
 var hp = 5
 var is_attacking = false
 var on_attacking_cooldown = false
+var is_rolling = false
+var is_invulnerable = false
 
 var on_cutscene = false
 
@@ -27,11 +36,13 @@ var is_dead = false
 var previous_input_direction: Vector2 = Vector2.DOWN
 
 func _physics_process(_delta: float) -> void:
+	if is_dead: return
 	if on_cutscene: return
 	if on_start_time: return
-	if stunned:
+	if stunned or is_rolling:
 		HandleFriction()
 		return
+
 	if is_attacking:
 		# Calculate the current speed
 		var current_speed: float = velocity.length()
@@ -78,10 +89,23 @@ func _physics_process(_delta: float) -> void:
 		input_direction.y = -1
 	else: input_direction.y = 0
 	
+	if Input.is_action_just_pressed("Roll") and !is_rolling and !on_roll_cooldown and input_direction != Vector2.ZERO:
+		is_rolling = true
+		sprite.play("Roll")
+		is_invulnerable = true
+		invulnerability_timer.start()
+		dash_audio.pitch_scale = randf_range(.8,1.2)
+		dash_audio.play()
+		velocity = velocity.normalized() * 400
+		
+		move_and_slide()
+		return
+	
 	if Input.is_action_just_pressed("Attack") and !on_attacking_cooldown:
 		attack_timer.start()
 		is_attacking = true
-		
+		attack_audio.pitch_scale = randf_range(.8,1.2)
+		attack_audio.play()
 		var mouse_position: Vector2 = get_global_mouse_position()
 
 		# Calculate the direction vector from the parent node to the mouse
@@ -149,11 +173,13 @@ func HandleAnimation(input_direction: Vector2) -> void:
 	previous_input_direction = input_direction
 
 func Damage(knockback: Vector2) -> void:
+	if is_invulnerable: return
 	if stunned: return
 	hp -= 1
 	if hp <= 0:
 		die()
 		return
+	sprite.play("Damaged")
 	velocity = knockback
 	move_and_slide()
 	stunned = true
@@ -162,6 +188,7 @@ func Damage(knockback: Vector2) -> void:
 func die() -> void:
 	sprite.play("Die")
 	is_dead = true
+	restart_after_time.start()
 
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
@@ -204,3 +231,18 @@ func _on_stun_timer_timeout() -> void:
 
 func _on_start_fall_timer_timeout() -> void:
 	on_start_time = false
+
+
+func _on_restart_after_time_timeout() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_invulnerability_timer_timeout() -> void:
+	is_invulnerable = false
+	is_rolling = false
+	roll_cooldown.start()
+	on_roll_cooldown = true
+
+
+func _on_roll_cooldown_timeout() -> void:
+	on_roll_cooldown = false

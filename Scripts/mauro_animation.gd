@@ -9,7 +9,7 @@ extends Node
 var can_change_animation = true
 
 func _physics_process(_delta: float) -> void:
-	
+	if player.is_dead: return
 	if !can_change_animation: return
 	
 	if player.velocity.x > 0.1:

@@ -98,7 +98,7 @@ label_settings = SubResource("LabelSettings_isj1i")
 [node name="RichTextLabel2" type="RichTextLabel" parent="AboutContainer"]
 layout_mode = 2
 text = "- GitHub: @capelosini (Developer)
-- Github: @ManancialGD (Developer)
+- Itch.io: ManancialGD (Developer)
 - Youtube: @bousXD (Artist)"
 fit_content = true
 
