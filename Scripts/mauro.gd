@@ -6,6 +6,7 @@ signal got_damaged()
 
 @onready var stunned_time: Timer = $StunnedTime
 @onready var restart_after_timer: Timer = $RestartAfterTimer
+@onready var life_bar: ProgressBar = $"../CameraPivot/Camera2D/UI/LifeBar"
 
 var hp = 3
 var is_dead = false
@@ -20,6 +21,7 @@ func Damage(knockback: Vector2) -> void:
 	if hp <= 0:
 		die()
 	velocity = knockback
+	life_bar.value=hp
 	move_and_slide()
 	emit_signal("got_damaged")
 	

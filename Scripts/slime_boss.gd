@@ -11,6 +11,8 @@ class_name Slime_Boss
 @export var target: CharacterBody2D
 @export var speed: float = 150
 @onready var impact_timer: Timer = $ImpactTimer
+@onready var ui_boss: VBoxContainer = $"../CameraPivot/Camera2D/UI/UIBoss"
+@onready var boss_life_bar: ProgressBar = $"../CameraPivot/Camera2D/UI/UIBoss/BossLifeBar"
 
 var on_cutscene = true
 var before_cutscene = true
@@ -21,6 +23,7 @@ var is_dead = false
 @onready var delete_after_timer: Timer = $DeleteAfterTimer
 
 func _process(delta: float) -> void:
+	boss_life_bar.value=hp
 	if is_dead: return
 	if before_cutscene: return
 	if anim.frame == 11:
@@ -81,9 +84,13 @@ func Damage():
 
 func die() -> void:
 	delete_after_timer.start()
+	$"../CameraPivot/Camera2D/UI/WinUI".visible=true
+	$"../CameraPivot/MusicController/Main".stop()
+	$"../CameraPivot/MusicController/Outro".play()
 	
 func _on_cutscene_end_timer_timeout() -> void:
 	on_cutscene = false
+	ui_boss.visible=true
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body is RPG_Player:
@@ -97,6 +104,7 @@ func _on_impact_timer_timeout() -> void:
 
 
 func _on_delete_after_timer_timeout() -> void:
+	ui_boss.visible=false
 	queue_free()
 
 

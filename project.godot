@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom_font="res://Assets/Fonts/DotGothic16-Regular.ttf"
+theme/default_font_antialiasing=0
+
 [input]
 
 Jump={

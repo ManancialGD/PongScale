@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://csvra4hnxrpbt"]
+[gd_scene load_steps=19 format=4 uid="uid://csvra4hnxrpbt"]
 
 [ext_resource type="Script" path="res://Scripts/camera_pivot.gd" id="1_kytp8"]
 [ext_resource type="PackedScene" uid="uid://dtitcshw52iyk" path="res://Scenes/mauro_player.tscn" id="2_r5oe3"]
@@ -22,6 +22,9 @@ texture = ExtResource("8_1magh")
 
 [sub_resource type="TileSet" id="TileSet_05435"]
 sources/0 = SubResource("TileSetAtlasSource_cstky")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud2js"]
+bg_color = Color(1, 0.339453, 0.308708, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7noq"]
 texture = ExtResource("3_wkkid")
@@ -75,6 +78,28 @@ limit_left = -285
 limit_bottom = 64
 drag_left_margin = 0.1
 drag_right_margin = 0.1
+
+[node name="UI" type="Control" parent="CameraPivot/Camera2D"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.0
+offset_top = 350.0
+offset_right = 144.0
+offset_bottom = 390.0
+
+[node name="LifeBar" type="ProgressBar" parent="CameraPivot/Camera2D/UI"]
+layout_mode = 0
+offset_left = -270.0
+offset_top = -447.0
+offset_right = -110.0
+offset_bottom = -420.0
+scale = Vector2(0.4, 0.4)
+theme_override_styles/fill = SubResource("StyleBoxFlat_ud2js")
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
 
 [node name="MauroPlayer" parent="." instance=ExtResource("2_r5oe3")]
 unique_name_in_owner = true

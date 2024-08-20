@@ -35,7 +35,7 @@ func Interact():
 			character.PlatformDamage()
 			
 	instance.position = Vector2(position.x, position.y - 16)
-	get_tree().root.add_child(instance)
+	get_tree().current_scene.add_child(instance)
 
 	animated_sprite_2d.play("done")
 	

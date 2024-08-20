@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://drklu50pvxydd"]
+[gd_scene load_steps=27 format=4 uid="uid://drklu50pvxydd"]
 
 [ext_resource type="Script" path="res://Scripts/camera_pivot.gd" id="1_vc7ut"]
 [ext_resource type="PackedScene" uid="uid://i8arl7nwgjwb" path="res://Scenes/rpg_player.tscn" id="1_yrmbn"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/boss_room_entrance.gd" id="6_wp3eu"]
 [ext_resource type="AudioStream" uid="uid://lkyijmqcpbw6" path="res://Assets/Music/BossMusicFase2Intro.wav" id="7_vos43"]
 [ext_resource type="AudioStream" uid="uid://djoch3qsoi6oa" path="res://Assets/Music/BossMusicFase2.wav" id="8_5qlgw"]
+[ext_resource type="AudioStream" uid="uid://cfgc6gcikjn6s" path="res://Assets/Music/BossMusicFase2Out.wav" id="9_rii7x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gd5dy"]
 texture = ExtResource("3_b40vn")
@@ -1085,6 +1086,23 @@ _data = {
 "RESET": SubResource("Animation_1ikfj")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17i3n"]
+bg_color = Color(1, 0.341176, 0.309804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e0tsl"]
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o780n"]
+bg_color = Color(0.98872, 0.373289, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gym12"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7037"]
+font_size = 13
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eswbb"]
 size = Vector2(272, 20)
 
@@ -1115,6 +1133,70 @@ position = Vector2(-2, 1)
 zoom = Vector2(2, 2)
 script = ExtResource("3_7eoae")
 
+[node name="UI" type="Control" parent="CameraPivot/Camera2D"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.0
+offset_top = 350.0
+offset_right = 144.0
+offset_bottom = 390.0
+
+[node name="PlayerLifeBar" type="ProgressBar" parent="CameraPivot/Camera2D/UI"]
+layout_mode = 0
+offset_left = -360.0
+offset_top = -483.0
+offset_right = -199.0
+offset_bottom = -456.0
+scale = Vector2(0.4, 0.4)
+theme_override_styles/fill = SubResource("StyleBoxFlat_17i3n")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="UIBoss" type="VBoxContainer" parent="CameraPivot/Camera2D/UI"]
+visible = false
+layout_mode = 0
+offset_left = -247.0
+offset_top = -245.0
+offset_right = 53.0
+offset_bottom = -191.0
+
+[node name="Label" type="Label" parent="CameraPivot/Camera2D/UI/UIBoss"]
+layout_mode = 2
+text = "Giant Slime Boss"
+label_settings = SubResource("LabelSettings_e0tsl")
+horizontal_alignment = 1
+
+[node name="BossLifeBar" type="ProgressBar" parent="CameraPivot/Camera2D/UI/UIBoss"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_o780n")
+max_value = 15.0
+step = 1.0
+value = 15.0
+show_percentage = false
+
+[node name="WinUI" type="VBoxContainer" parent="CameraPivot/Camera2D/UI"]
+visible = false
+layout_mode = 0
+offset_left = -189.0
+offset_top = -483.0
+offset_bottom = -403.0
+
+[node name="Label" type="Label" parent="CameraPivot/Camera2D/UI/WinUI"]
+layout_mode = 2
+text = "Congrats!"
+label_settings = SubResource("LabelSettings_gym12")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CameraPivot/Camera2D/UI/WinUI"]
+layout_mode = 2
+text = "You finished the game! 
+We hope you liked the demo!"
+label_settings = SubResource("LabelSettings_p7037")
+horizontal_alignment = 1
+
 [node name="ShakerTimer" type="Timer" parent="CameraPivot"]
 wait_time = 0.2
 one_shot = true
@@ -1138,6 +1220,10 @@ bus = &"Music"
 
 [node name="Main" type="AudioStreamPlayer2D" parent="CameraPivot/MusicController"]
 stream = ExtResource("8_5qlgw")
+bus = &"Music"
+
+[node name="Outro" type="AudioStreamPlayer2D" parent="CameraPivot/MusicController"]
+stream = ExtResource("9_rii7x")
 bus = &"Music"
 
 [node name="RPGPlayer" parent="." instance=ExtResource("1_yrmbn")]

@@ -16,6 +16,7 @@ class_name RPG_Player
 @onready var roll_cooldown: Timer = $RollCooldown
 @onready var dash_audio: AudioStreamPlayer2D = $DashAudio
 @onready var attack_audio: AudioStreamPlayer2D = $AttackAudio
+@onready var player_life_bar: ProgressBar = $"../CameraPivot/Camera2D/UI/PlayerLifeBar"
 
 var on_roll_cooldown = false
 
@@ -36,6 +37,7 @@ var is_dead = false
 var previous_input_direction: Vector2 = Vector2.DOWN
 
 func _physics_process(_delta: float) -> void:
+	player_life_bar.value=hp
 	if is_dead: return
 	if on_cutscene: return
 	if on_start_time: return
@@ -175,6 +177,7 @@ func HandleAnimation(input_direction: Vector2) -> void:
 func Damage(knockback: Vector2) -> void:
 	if is_invulnerable: return
 	if stunned: return
+	if is_dead: return
 	hp -= 1
 	if hp <= 0:
 		die()
