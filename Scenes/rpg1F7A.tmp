@@ -1160,7 +1160,6 @@ one_shot = true
 [connection signal="body_entered" from="BossRoomEntrance" to="BossRoomEntrance" method="_on_body_entered"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="CameraPivot/Camera2D" method="_on_boss_room_entrance_player_entered_room"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="RPGPlayer" method="_on_boss_room_entrance_player_entered_room"]
-[connection signal="player_entered_room" from="BossRoomEntrance" to="SlimeBoss" method="_on_boss_room_entrance_player_entered_room"]
 [connection signal="player_entered_room" from="BossRoomEntrance" to="BlockPath" method="_on_boss_room_entrance_player_entered_room"]
 [connection signal="timeout" from="BossRoomEntrance/CutsceneEndTimer" to="RPGPlayer" method="_on_cutscene_end_timer_timeout"]
 [connection signal="timeout" from="BossRoomEntrance/CutsceneEndTimer" to="SlimeBoss" method="_on_cutscene_end_timer_timeout"]

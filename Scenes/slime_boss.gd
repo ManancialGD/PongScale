@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 class_name Slime_Boss
+@export var camera: RPG_Camera
 
 @onready var attack_area: Area2D = $AttackArea
 @onready var impact_animation: AnimationPlayer = $AttackArea/ImpactAnimation
@@ -12,6 +13,7 @@ class_name Slime_Boss
 @onready var impact_timer: Timer = $ImpactTimer
 
 var on_cutscene = true
+var before_cutscene = true
 var switch_animation = false
 
 var hp = 15
@@ -20,10 +22,12 @@ var is_dead = false
 
 func _process(delta: float) -> void:
 	if is_dead: return
+	if before_cutscene: return
 	if anim.frame == 11:
 		impact_animation.play("Impact")
 		attack_area.monitoring = true
 		impact_timer.start()
+		camera.shake(5,5)
 
 func _physics_process(_delta: float) -> void:
 	if is_dead: return
@@ -94,3 +98,7 @@ func _on_impact_timer_timeout() -> void:
 
 func _on_delete_after_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_boss_room_entrance_player_entered_room(player: RPG_Player) -> void:
+	before_cutscene = false

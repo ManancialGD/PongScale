@@ -12,19 +12,23 @@ class_name RPG_Player
 @onready var attack_after_time: Timer = $AttackAfterTime
 @onready var stun_timer: Timer = $StunTimer
 
-
+var hp = 5
 var is_attacking = false
 var on_attacking_cooldown = false
 
 var on_cutscene = false
 
 var stunned = false
+var on_start_time = true
+
+var is_dead = false
 
 # Variable to store the last input direction
 var previous_input_direction: Vector2 = Vector2.DOWN
 
 func _physics_process(_delta: float) -> void:
 	if on_cutscene: return
+	if on_start_time: return
 	if stunned:
 		HandleFriction()
 		return
@@ -145,10 +149,19 @@ func HandleAnimation(input_direction: Vector2) -> void:
 	previous_input_direction = input_direction
 
 func Damage(knockback: Vector2) -> void:
+	if stunned: return
+	hp -= 1
+	if hp <= 0:
+		die()
+		return
 	velocity = knockback
 	move_and_slide()
 	stunned = true
 	stun_timer.start()
+
+func die() -> void:
+	sprite.play("Die")
+	is_dead = true
 
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
@@ -177,6 +190,7 @@ func _on_attack_after_time_timeout() -> void:
 
 
 func _on_boss_room_entrance_player_entered_room(_player: RPG_Player) -> void:
+	hp = 5
 	on_cutscene = true
 
 
@@ -186,3 +200,7 @@ func _on_cutscene_end_timer_timeout() -> void:
 
 func _on_stun_timer_timeout() -> void:
 	stunned = false
+
+
+func _on_start_fall_timer_timeout() -> void:
+	on_start_time = false
