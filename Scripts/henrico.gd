@@ -4,7 +4,7 @@ class_name Henrico
 
 const SPEED = 1400
 
-var direction = -1
+@export var direction = -1
 
 var dead = false
 
@@ -12,9 +12,14 @@ var canMove = false
 
 var normalDeath = false
 
-@onready var right_ray_cast: RayCast2D = $RightRayCast
-@onready var left_ray_cast: RayCast2D = $LeftRayCast
+@onready var mauro_player: Mauro = %MauroPlayer
+var initial_distance = true
+
+@onready var down_right_ray_cast: RayCast2D = $DownRightRayCast
+@onready var down_left_ray_cast: RayCast2D = $DownLeftRayCast
 @onready var crushed_sound: AudioStreamPlayer2D = $CrushedSound
+@onready var left_ray_cast: RayCast2D = $LeftRayCast
+@onready var right_ray_cast: RayCast2D = $RightRayCast
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var move_after: Timer = $MoveAfter
@@ -29,6 +34,12 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if initial_distance:
+		var distance: float = global_position.distance_to(mauro_player.global_position)
+		if distance <= 225:
+			initial_distance = false
+		return
+	
 	if normalDeath:
 		rotation += random_direction * 2.5 * delta
 	
@@ -41,14 +52,14 @@ func _physics_process(delta: float) -> void:
 	if !canMove:
 		return
 		
-	if !right_ray_cast.is_colliding():
+	if !down_right_ray_cast.is_colliding() || right_ray_cast.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = false
-	if !left_ray_cast.is_colliding():
+	if !down_left_ray_cast.is_colliding() || left_ray_cast.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = true
-	if !left_ray_cast.is_colliding() and !right_ray_cast.is_colliding():
-		direction = 0
+	if (!down_left_ray_cast.is_colliding() and !down_right_ray_cast.is_colliding()) or (right_ray_cast.is_colliding() and left_ray_cast.is_colliding()):
+		direction = random_direction
 		
 	velocity.x = SPEED * direction * delta
 	

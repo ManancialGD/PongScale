@@ -13,11 +13,12 @@ var current_hp = 3
 var isDead = false
 var is_stunned = false
 var is_attacking = false
+@onready var attack_after_time: Timer = $AttackAfterTime
 
 @onready var target: CharacterBody2D = %RPGPlayer
 @export var speed: float = 25
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	HandleFriction()
 	
 	if isDead or is_stunned: return
@@ -26,14 +27,18 @@ func _physics_process(delta: float) -> void:
 		var target_dir: Vector2 = target.position - position
 		var target_distance: float = global_position.distance_to(target.global_position)
 		
-		if target_distance <= 24 and !is_attacking:
+		if target_distance <= 40 and !is_attacking:
 			is_attacking = true
-			attack_timer.start()
-			var angle: float = target_dir.angle()
-			attack_area.rotation = angle
-			attack_area.monitoring = true
-		
+			attack_after_time.start()
+			if velocity.y < 0: anim.play("AttackUp")
+			else: anim.play("AttackDown")
 		velocity = target_dir.normalized() * speed
+		if !is_attacking:
+			if velocity.y < 0:
+				anim.play("WalkUp")
+			else:
+				anim.play("WalkDown")
+			anim.flip_h = velocity.x > 0
 		move_and_slide()
 
 
@@ -67,9 +72,14 @@ func Damage(knockback: Vector2) -> void:
 	current_hp -= 1
 	if current_hp <= 0:
 		die()
-		
+	else:
+		anim.play("Damage")
 	velocity = knockback
 	move_and_slide()
+	if is_attacking:
+		is_attacking = false
+		if !attack_after_time.is_stopped(): attack_after_time.stop()
+		if !attack_timer.is_stopped(): attack_timer.stop()
 
 func die() -> void:
 	isDead = true
@@ -77,7 +87,9 @@ func die() -> void:
 
 func _defer_die() -> void:
 	coll.disabled = true
-	anim.play("Die")
+	if velocity.y < 0:
+		anim.play("DieUp")
+	else: anim.play("DieDown")
 	delete_timer.start()
 
 func _on_delete_timer_timeout() -> void:
@@ -89,8 +101,18 @@ func _on_stun_time_timeout() -> void:
 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body is RPG_Player:
+		var player = body as RPG_Player
+		var player_dir = player.position - position
+		player.Damage(player_dir.normalized() * 150)
 
 
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
+	attack_area.monitoring = false
+
+
+func _on_attack_after_time_timeout() -> void:
+	if is_stunned: return
+	attack_area.monitoring = true
+	attack_timer.start()

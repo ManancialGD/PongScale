@@ -97,6 +97,8 @@ _data = {
 size = Vector2(16, 3)
 
 [node name="LuckBlock" type="StaticBody2D"]
+collision_layer = 257
+collision_mask = 257
 script = ExtResource("1_m68j8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

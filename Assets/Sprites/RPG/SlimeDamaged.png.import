@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be6vqcs2alanu"
-path="res://.godot/imported/momo_idle_shadow.png-e387787d08100ce636d5e1d16a479964.ctex"
+uid="uid://bv7bu0hrm3vjh"
+path="res://.godot/imported/SlimeDamaged.png-3cef16e9f2fdd065b9a90a69a367ec3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/RPG/momo_idle_shadow.png"
-dest_files=["res://.godot/imported/momo_idle_shadow.png-e387787d08100ce636d5e1d16a479964.ctex"]
+source_file="res://Assets/Sprites/RPG/SlimeDamaged.png"
+dest_files=["res://.godot/imported/SlimeDamaged.png-3cef16e9f2fdd065b9a90a69a367ec3a.ctex"]
 
 [params]
 
