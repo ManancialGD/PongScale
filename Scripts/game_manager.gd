@@ -8,12 +8,12 @@ const howManyToPausePong=2
 
 var pongPaused=false
 var transitionSpeed=0
-var transitionAcc=0.07
+var transitionAcc=0.10
 var playerTurnTransition=-1
 var playerFallSide=1
 signal pongPauseGame
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Ball.playerColCount >= howManyToPausePong && !pongPaused:
 		emit_signal("pongPauseGame")
 		transition_sound.play()

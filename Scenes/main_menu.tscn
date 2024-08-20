@@ -102,6 +102,16 @@ text = "- GitHub: @capelosini (Developer)
 - Youtube: @bousXD (Artist)"
 fit_content = true
 
+[node name="Label3" type="Label" parent="AboutContainer"]
+layout_mode = 2
+text = "GitHub"
+label_settings = SubResource("LabelSettings_isj1i")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="AboutContainer"]
+layout_mode = 2
+text = "https://github.com/ManancialGD/PongScale"
+fit_content = true
+
 [connection signal="button_down" from="VBoxContainer/StartBtn" to="." method="_on_start_btn_button_down"]
 [connection signal="button_down" from="VBoxContainer/AboutBtn" to="." method="_on_about_btn_button_down"]
 [connection signal="button_down" from="VBoxContainer/ExitBtn" to="." method="_on_exit_btn_button_down"]

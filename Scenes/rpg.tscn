@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://drklu50pvxydd"]
+[gd_scene load_steps=26 format=4 uid="uid://drklu50pvxydd"]
 
 [ext_resource type="Script" path="res://Scripts/camera_pivot.gd" id="1_vc7ut"]
 [ext_resource type="PackedScene" uid="uid://i8arl7nwgjwb" path="res://Scenes/rpg_player.tscn" id="1_yrmbn"]
@@ -1090,18 +1090,13 @@ _data = {
 bg_color = Color(1, 0.341176, 0.309804, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e0tsl"]
-font_size = 10
-outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o780n"]
 bg_color = Color(0.98872, 0.373289, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_gym12"]
-font_size = 22
-
-[sub_resource type="LabelSettings" id="LabelSettings_p7037"]
-font_size = 13
+[sub_resource type="LabelSettings" id="LabelSettings_ohf1q"]
+font_size = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eswbb"]
 size = Vector2(272, 20)
@@ -1180,21 +1175,21 @@ show_percentage = false
 [node name="WinUI" type="VBoxContainer" parent="CameraPivot/Camera2D/UI"]
 visible = false
 layout_mode = 0
-offset_left = -189.0
-offset_top = -483.0
-offset_bottom = -403.0
+offset_left = -231.0
+offset_top = -503.0
+offset_right = 27.0
+offset_bottom = -380.0
 
 [node name="Label" type="Label" parent="CameraPivot/Camera2D/UI/WinUI"]
 layout_mode = 2
 text = "Congrats!"
-label_settings = SubResource("LabelSettings_gym12")
+label_settings = SubResource("LabelSettings_ohf1q")
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CameraPivot/Camera2D/UI/WinUI"]
 layout_mode = 2
 text = "You finished the game! 
 We hope you liked the demo!"
-label_settings = SubResource("LabelSettings_p7037")
 horizontal_alignment = 1
 
 [node name="ShakerTimer" type="Timer" parent="CameraPivot"]
