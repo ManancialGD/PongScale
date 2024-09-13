@@ -6,7 +6,7 @@ signal got_damaged()
 
 @onready var stunned_time: Timer = $StunnedTime
 @onready var restart_after_timer: Timer = $RestartAfterTimer
-@onready var life_bar: ProgressBar = $"../CameraPivot/Camera2D/UI/LifeBar"
+@onready var life_bar: ProgressBar = $"../CanvasLayer/LifeBar"
 
 var hp = 3
 var is_dead = false

@@ -1141,8 +1141,8 @@ offset_bottom = 390.0
 layout_mode = 0
 offset_left = -360.0
 offset_top = -483.0
-offset_right = -199.0
-offset_bottom = -456.0
+offset_right = -185.0
+offset_bottom = -465.0
 scale = Vector2(0.4, 0.4)
 theme_override_styles/fill = SubResource("StyleBoxFlat_17i3n")
 max_value = 5.0
@@ -1223,10 +1223,11 @@ bus = &"Music"
 
 [node name="RPGPlayer" parent="." instance=ExtResource("1_yrmbn")]
 unique_name_in_owner = true
-z_index = 5
-position = Vector2(2, 180)
+y_sort_enabled = true
+position = Vector2(1, 181)
 
 [node name="RPG_Enemy" parent="." instance=ExtResource("4_sel6w")]
+y_sort_enabled = true
 position = Vector2(42, -122)
 
 [node name="SlimeBoss" parent="." node_paths=PackedStringArray("camera", "target") instance=ExtResource("5_32ima")]

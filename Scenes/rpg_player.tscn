@@ -514,7 +514,7 @@ volume_db = -0.2
 bus = &"SoundEffects"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 5
+y_sort_enabled = true
 position = Vector2(-3, -16)
 sprite_frames = SubResource("SpriteFrames_4l664")
 animation = &"Roll"

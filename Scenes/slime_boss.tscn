@@ -364,6 +364,7 @@ _data = {
 }
 
 [node name="SlimeBoss" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_afghb")
 
 [node name="ImpactTimer" type="Timer" parent="."]
